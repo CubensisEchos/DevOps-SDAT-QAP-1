@@ -1,5 +1,10 @@
 package com.keyin.eventbooker.Registration;
 
+/**
+ * Represents an attendee in the system
+ * Stores all details on an attendee,
+ * other than what events they are attending
+ */
 public class Attendee
 {
     private Long attendeeId;
