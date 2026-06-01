@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 public class EventTest
 {
     Event event = new Event();
@@ -12,7 +14,7 @@ public class EventTest
     @BeforeEach
     void setUp()
     {
-        event = new Event(1L, "Concert 1", "Temp Description", "August 12 - 7pm", "2500");
+        event = new Event(1L, "Concert 1", "Test Description", LocalDateTime.of(2026, 8, 12, 19, 0), 2500);
     }
     @AfterEach
     void tearDown()
@@ -23,7 +25,7 @@ public class EventTest
     void testEventCreation()
     {
         Assertions.assertEquals("Concert 1", event.getEventName());
-        Assertions.assertEquals("Temp Description", event.getEventDescription());
+        Assertions.assertEquals("Test Description", event.getEventDescription());
     }
 
     @Test
