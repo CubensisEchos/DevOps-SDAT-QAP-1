@@ -14,7 +14,9 @@ public class EventTest
     @BeforeEach
     void setUp()
     {
-        event = new Event(1L, "Concert 1", "Test Description", LocalDateTime.of(2026, 8, 12, 19, 0), 2500);
+        event = new Event(1L, "Deadgaard at The Rockhouse",
+                "Join us on August 10th, for a night of local metal at the Rockhouse. No outside beverages/food allowed. Doors open at 8:00pm, music starts at 9:00pm.",
+                LocalDateTime.of(2026, 8, 12, 19, 0), 100);
     }
     @AfterEach
     void tearDown()
@@ -24,8 +26,11 @@ public class EventTest
     @Test
     void testEventCreation()
     {
-        Assertions.assertEquals("Concert 1", event.getEventName());
-        Assertions.assertEquals("Test Description", event.getEventDescription());
+        Assertions.assertEquals(1L, event.getEventId());
+        Assertions.assertEquals("Deadgaard at The Rockhouse", event.getEventName());
+        Assertions.assertEquals("Join us on August 10th, for a night of local metal at the Rockhouse. No outside beverages/food allowed. Doors open at 8:00pm, music starts at 9:00pm.", event.getEventDescription());
+        Assertions.assertEquals(LocalDateTime.of(2026, 8, 12, 19, 0), event.getEventDateTime());
+        Assertions.assertEquals(100, event.getEventCapacity());
     }
 
     @Test
