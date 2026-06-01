@@ -1,5 +1,11 @@
 package com.keyin.eventbooker.events;
 
+import com.keyin.eventbooker.Registration.Attendee;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Event
 {
     //what is needed?
@@ -7,28 +13,35 @@ public class Event
     private Long eventId;
     private String eventName;
     private String eventDescription;
-    private String eventDateTime;
-    private String eventCapacity;
+    private LocalDateTime eventDateTime;
+    private int eventCapacity;
 
-    public Event(Long eventId, String eventName, String eventDescription, String eventDateTime, String eventCapacity)
+    private List<Attendee> attendees;
+
+    public Event(Long eventId, String eventName, String eventDescription, LocalDateTime eventDateTime, int eventCapacity)
     {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.eventDateTime = eventDateTime;
         this.eventCapacity = eventCapacity;
+
+        this.attendees = new ArrayList<>();
     }
 
-    public Event(String eventName, String eventDescription, String eventDateTime, String eventCapacity) {
+    public Event(String eventName, String eventDescription, LocalDateTime eventDateTime, int eventCapacity)
+    {
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.eventDateTime = eventDateTime;
         this.eventCapacity = eventCapacity;
+
+        this.attendees = new ArrayList<>();
     }
 
     public Event()
     {
-
+        this.attendees = new ArrayList<>();
     }
 
     public Long getEventId() {
@@ -55,20 +68,30 @@ public class Event
         this.eventDescription = eventDescription;
     }
 
-    public String getEventDateTime() {
+    public LocalDateTime getEventDateTime() {
         return eventDateTime;
     }
 
-    public void setEventDateTime(String eventDateTime) {
+    public void setEventDateTime(LocalDateTime eventDateTime) {
         this.eventDateTime = eventDateTime;
     }
 
-    public String getEventCapacity() {
+    public int getEventCapacity() {
         return eventCapacity;
     }
 
-    public void setEventCapacity(String eventCapacity) {
+    public void setEventCapacity(int eventCapacity) {
         this.eventCapacity = eventCapacity;
+    }
+
+    public List<Attendee> getAttendees()
+    {
+        return attendees;
+    }
+
+    public void addAttendee(Attendee attendee)
+    {
+        attendees.add(attendee);
     }
 
     @Override
@@ -78,7 +101,8 @@ public class Event
         sb.append(", eventName='").append(eventName).append('\'');
         sb.append(", eventDescription='").append(eventDescription).append('\'');
         sb.append(", eventDateTime='").append(eventDateTime).append('\'');
-        sb.append(", eventCapacity='").append(eventCapacity).append('\'');
+        sb.append(", eventCapacity=").append(eventCapacity);
+        sb.append(", attendees=").append(attendees);
         sb.append('}');
         return sb.toString();
     }
