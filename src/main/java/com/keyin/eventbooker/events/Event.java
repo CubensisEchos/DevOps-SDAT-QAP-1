@@ -6,10 +6,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents an event in the system
+ * Stores all event info,
+ * including a list of attendees for each event
+ */
 public class Event
 {
-    //what is needed?
-    // event name, event date & time, event capacity, event id
     private Long eventId;
     private String eventName;
     private String eventDescription;

@@ -7,13 +7,26 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service class for managing the event booking system
+ *
+ * Handles creation of events, viewing all events, finding events and attendees by ID,
+ * attendee registrations, duplicated registration prevention, and capacity limits.
+ */
 public class BookingSystem
 {
     private List<Event> events = new ArrayList<>();
     private Long nextEventId = 1L;
     private Long nextAttendeeId = 1L;
 
-    //add event
+    /**
+     * Adds a new event to the system with an automatically generated ID
+     *
+     * @param eventName name of the event
+     * @param eventDescription description of the event
+     * @param eventDateTime date and time of the event
+     * @param eventCapacity capacity of the event
+     */
     public void addNewEventToSystem(String eventName, String eventDescription, LocalDateTime eventDateTime, int eventCapacity)
     {
         Event event = new Event(nextEventId, eventName, eventDescription, eventDateTime, eventCapacity);
@@ -22,7 +35,12 @@ public class BookingSystem
         nextEventId++;
     }
 
-    //find event by id
+    /**
+     * Searches for an event by ID
+     *
+     * @param eventId unique Identifier of the event
+     * @return the matching event, if it exists
+     */
     public Event searchEventById(Long eventId)
     {
         for (Event event : events)
@@ -35,7 +53,15 @@ public class BookingSystem
         return null;
     }
 
-    //register attendee for event
+    /**
+     * Registers an attendee for selected event
+     * Prevents duplicates and checks event capacity
+     *
+     * @param eventId ID of the chosen event
+     * @param firstName attendee's first name
+     * @param lastName attendee's last name
+     * @param email attendee's email - used for duplication check
+     */
     public void registerAttendeeForEvent(Long eventId, String firstName, String lastName, String email)
     {
         Event event = searchEventById(eventId);
@@ -70,7 +96,12 @@ public class BookingSystem
         System.out.println("Attendee has successfully been registered for the event");
     }
 
-    // cancel registration,
+    /**
+     * Cancels an attendee's registration for selected event
+     *
+     * @param eventId ID of the chosen event
+     * @param attendeeId ID of the attendee to remove
+     */
     public void cancelAttendeeRegistrationForEvent(Long eventId, Long attendeeId)
     {
         Event event = searchEventById(eventId);
@@ -103,7 +134,10 @@ public class BookingSystem
         System.out.println("Attendee has been successfully removed from the event registration.");
     }
 
-    //view all events(show id, name, registered attendees, and capacity
+    /**
+     * Displays all events in the system
+     * Shows event ID, name, and date/time
+     */
     public void viewAllEvents()
     {
         if (events.isEmpty())
@@ -122,6 +156,12 @@ public class BookingSystem
         System.out.println("==========================");
     }
 
+    /**
+     * Returns internal list of events
+     * used for testing purposes
+     *
+     * @return list of events
+     */
     public List<Event> getEvents()
     {
         return events;
