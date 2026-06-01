@@ -52,6 +52,15 @@ public class BookingSystem
             return;
             }
 
+        for (Attendee existing : event.getAttendees())
+        {
+            if (existing.getEmail().equalsIgnoreCase(email))
+            {
+                System.out.println("This attendee is already registered for this event");
+                return;
+            }
+        }
+
         Attendee attendee = new Attendee(nextAttendeeId, firstName, lastName, email);
 
         nextAttendeeId++;
@@ -111,5 +120,10 @@ public class BookingSystem
             System.out.println("Event Date & Time: " + event.getEventDateTime());
         }
         System.out.println("==========================");
+    }
+
+    public List<Event> getEvents()
+    {
+        return events;
     }
 }
